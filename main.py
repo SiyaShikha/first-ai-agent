@@ -1,17 +1,16 @@
 from dotenv import load_dotenv
 from agent import Agent
 import config
-
+from prompts import BASE_PROMPT
 
 load_dotenv()
 
 def main():
     print("🤖 AI Agent initialized. Type 'exit' to quit.\n")
 
-    system_prompt = getattr(config, "SYSTEM_PROMPT", "You are a helpful AI assistant.")
     model = getattr(config, "ANTHROPIC_MODEL", "claude-sonnet-5")
     max_tokens = getattr(config, "ANTHROPIC_MAX_TOKENS", 1000)
-    agent = Agent(system_prompt=system_prompt, model=model, max_tokens=max_tokens)
+    agent = Agent(system_prompt=BASE_PROMPT, model=model, max_tokens=max_tokens)
 
     while True:
         user_input = input("You: ").strip()
